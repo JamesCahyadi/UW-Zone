@@ -4,6 +4,10 @@ A website to read reviews about programs at University of Waterloo. This website
 
 I encourage any Waterloo students or alumni to leave a review about their program on my website for all to see!
 
+### Test Account
+Username: sharedaccount
+password: sharedaccount
+
 ### Future Features
 * Ability to rate programs from 0 - 10
 * Ability to like reviews
