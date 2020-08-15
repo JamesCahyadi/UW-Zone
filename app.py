@@ -131,7 +131,7 @@ def review():
                 review = Reviews(student_id=id, title=form.title.data, message=form.message.data)
                 db.session.add(review)
                 db.session.commit()
-                flash('Thanks for you review!', 'success')
+                flash('Thanks for your review!', 'success')
                 return redirect(url_for('home'))
         else:
             return render_template('review.html', form=form, program=Student.query.get(id).program)
