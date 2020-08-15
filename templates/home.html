@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block title %}UW Zone{% endblock %}
+
+{% block filter %}
+<form class="filter-form mb-3 mt-3" method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div class="form-row">
+        <div class="col">
+            {{ form.program.label(class="form-control-label")}}
+            {{ form.program(class="form-control form-control-sm")}}
+        </div>
+
+        <div class="col">
+            {{ form.keyword.label(class="form-control-label")}}
+            {{ form.keyword(class="form-control form-control-sm")}}
+        </div>
+    </div>
+    <hr style="max-width: 1200px;">
+    <div class="form-row">
+        <div class="col">
+            {{ form.fromDate.label(class="form-control-label")}}
+            <input type="date" value={{ fromDate }} name="fromDate" class="form-control form-control-sm" />
+        </div>
+        <div class="col">
+            {{ form.toDate.label(class="form-control-label")}}
+            <input type="date" value={{ toDate }} name="toDate" class="form-control form-control-sm" />
+        </div>
+    </div>
+    <div class="form-row mt-3" style="display:flex; justify-content: flex-end;">
+        {{ form.submit(class="btn btn-dark")}}
+    </div>
+</form>
+<a href={{ url_for('review') }}>
+    <button class="btn btn-success">
+        Add Review +
+    </button>
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="list-container">
+    <div class="header-row">
+        <div class="header-title">
+            Program Reviews
+        </div>
+        <div>
+
+        </div>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {% for pageNum in reviews.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                {% if pageNum %}
+                {% if reviews.page == pageNum %}
+                <li class="page-item active" style="z-index:0;">
+                    <a class="page-link" href="{{ url_for('home', page=pageNum) }}">
+                        {{ pageNum }}
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('home', page=pageNum) }}">
+                        {{ pageNum }}
+                    </a>
+                </li>
+                {% endif %}
+                {% else %}
+                <p style="color:#cccccc;">__</p>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</div>
+<hr style="margin-top: 0;">
+{% if not reviews.items %}
+<div class="review-container" style="text-align:center;">
+    No reviews found!
+</div>
+{% else %}
+
+{% for review in reviews.items %}
+<div class="review-container">
+    <div class="review">
+        <div class="review-title">
+            {{ review.title }}
+        </div>
+        <div class="review-date">
+            Written by
+            <span style="color: blue;">
+                {{ review.author.first_name }} {{ review.author.last_name }}
+            </span>
+            | {{ review.author.program }}
+        </div>
+        <div class="text-muted review-date">
+            {{ review.created_date.strftime('%b %d, %Y %H:%M') }}
+        </div>
+
+        <br>
+        <div class="review-message">
+            {{ review.message | truncate(100) }}
+        </div>
+        <br>
+        <div class="review-btn-container">
+            {% if review.author.first_name == firstname %}
+            <a href="{{ url_for('edit_review', review_id=review.review_id)}}">
+                <button class="btn btn-info mr-2">
+                    Edit
+                </button>
+            </a>
+            {% endif %}
+            <button class="btn btn-dark" data-popup-target="#popup">
+                Read More
+            </button>
+        </div>
+    </div>
+    <div class="popup" id="popup">
+        <div class="popup-title">
+            {{ review.title }}
+        </div>
+        <div class="popup-date">
+            Written by
+            <span style="color: blue;">
+                {{ review.author.first_name }} {{ review.author.last_name }}
+            </span>
+            | {{ review.author.program }}
+        </div>
+        <div class="text-muted popup-date">
+            Created {{ review.created_date.strftime('%b %d, %Y %H:%M') }}
+        </div>
+        <br>
+        <div class="popup-message">
+            {{ review.message }}
+        </div>
+        <br>
+        <div class="popup-btn-container">
+            <button data-close-button class="btn btn-dark">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="header-row">
+    <div></div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {% for pageNum in reviews.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+            {% if pageNum %}
+            {% if reviews.page == pageNum %}
+            <li class="page-item active" style="z-index:0;">
+                <a class="page-link" href="{{ url_for('home', page=pageNum) }}">
+                    {{ pageNum }}
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('home', page=pageNum) }}">
+                    {{ pageNum }}
+                </a>
+            </li>
+            {% endif %}
+            {% else %}
+            <p style="color:#cccccc;">__</p>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </nav>
+</div>
+</div>
+{% endblock %}

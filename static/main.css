@@ -1,0 +1,273 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif, Arial;
+    background-color: #ececec;
+    overflow-y: scroll;
+}
+
+.scroll-lock {
+  overflow: hidden;
+  height: 100%;
+}
+
+.popup-message::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  background-color: #fff;
+  width: 16px
+}
+
+.popup-message::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background-color: #fff
+}
+
+.popup-message::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background-color:  #babac0;
+  border-radius: 16px;
+  border: 4px solid #fff;
+}
+
+.popup-message::-webkit-scrollbar-button,
+body::-webkit-scrollbar-button {
+  display: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #5da2d5;
+    color: black;
+    font-weight: 800;
+    letter-spacing: 2px;
+    padding: 10px 50px;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0);
+}
+
+.logo {
+  justify-content: flex-start;
+  height: 50px;
+  width: 50px;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.nav-link a {
+    color: black;
+}
+
+.nav-link a:hover {
+    color: lightgrey;
+}
+
+.navbar:last-child svg{
+  /* display: flex; */
+  align-content: flex-end;
+  justify-content: flex-end !important;
+}
+
+.form-row {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.header-title {
+  font-size: 28px;
+}
+
+.keyword-search {
+  width: 50% !important;
+}
+
+.login-container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.content-container {
+    background-color: #F8F8F8;
+
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+}
+
+  .review-container {
+    background-color: white;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid black;
+    box-shadow: 0 1px 9px 3px #cccccc;
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  
+  .review-title {
+    font-size: 20px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    color: #333333;
+    display: flex;
+    align-content: space-between;
+  }
+  
+  .review-date {
+    margin-top: 3px;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: 0.5px;
+    color: #333333;
+    left: 0;
+  }
+  
+  .review-message {
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: 0.5px;
+    color: #333333;
+  }
+  
+  .review-btn-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  /*Pop up*/
+  .popup {
+    position: fixed;
+    box-sizing: border-box;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border-radius: 6px;
+    z-index: 10;
+    background-color: white;
+    width: 800px;
+    max-width: 100%;
+    max-height: 575px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popup.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .popup-title {
+    font-size: 20px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.5px;
+    color: #333333;
+  }
+  
+  .popup-date {
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: 0.5px;
+    color: #333333;
+  }
+  
+  .popup-message {
+    position: relative;
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: 0.5px;
+    color: #333333;
+    flex-grow: 100;
+    overflow-y: auto;
+    background-color: white;
+  }
+  
+  .popup-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .popup-btn-container a {
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: 0.5px;
+  }
+  
+  .popup-btn {
+    font-size: 14px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: 0.5px;
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    color: #ffffff;
+    border-radius: 3px;
+    background-color: #1565c0;
+    cursor: pointer;
+  }
+  
+  .popup-btn:hover {
+    background-color: #0f5099;
+  }
+  
+  #overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    pointer-events: none;
+  }
+  
+  #overlay.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .review-form {
+    max-width: 1000px;
+    margin: auto;
+    padding: 10px;
+  }
+
+  
